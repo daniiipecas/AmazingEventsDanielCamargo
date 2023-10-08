@@ -1,0 +1,64 @@
+.carouselExampleFade {}
+
+.carousel-item {
+  height: 37vh !important;
+
+}
+
+.d-inline-flex {
+  display: inline-flex !important;
+  justify-content: space-between;
+}
+
+body {
+  background-image: url(https://th.bing.com/th/id/R.dc0b889eb85b27d6a1af9755d2251a63?rik=ajYTdvA1xAp3eQ&riu=http%3a%2f%2fa.rgbimg.com%2fcache1r2HxE%2fusers%2ff%2ffa%2ffangol%2f600%2fnabAgQA.jpg&ehk=HFc9JVaeEGyfYhI1eFvbu4jHDlY2R7nUMg64sHqyUqw%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+header {
+  height: 10vh;
+
+}
+
+footer {
+  display: flex;
+
+  height: 10vh;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.iconos {
+  width: 30px;
+  margin-right: 5% !important;
+  margin-top: 1%;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0% !important;
+}
+
+h4 {
+  font-size: 64px !important;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+@media only screen and (max-width: 576px) {
+  div.col-sm-7 {
+    text-align: center;
+  }
+
+  .parra {
+    text-align: center;
+  }
+}
