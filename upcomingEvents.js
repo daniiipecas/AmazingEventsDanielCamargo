@@ -16,7 +16,7 @@ for (let evento of eventosFuturos) {
     const card = document.createElement("div");
     card.classList.add("card");
     card.innerHTML = `
-        <div class="col-sm-6">
+        <div class="col-md-3">
             <div class="card" style="width: 18rem;">
                 <img src=${evento.image}
                     class="card-img-top img-fluid" alt="...">
