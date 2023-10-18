@@ -5,7 +5,8 @@ for (let evento of eventos) {
     const card = document.createElement("div");
     card.classList.add("card");
     card.innerHTML = `
-  
+  <div class="row">
+            <div class="col-12">
     <div class="col-md-2">
       <div class="card" style="width: 13rem;">
         <img src=${evento.image} class="img-fluid" alt="...">
