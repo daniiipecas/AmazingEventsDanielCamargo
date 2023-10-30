@@ -1,8 +1,8 @@
 const contenedor = document.getElementById("contenedor-cards");
 const checkbox = document.getElementById("check");
-const buscador = document.getElementById("buscador"); // Agrega un elemento con el ID "buscador" en tu HTML.
+const buscador = document.getElementById("buscar"); 
 
-// Obtén la lista de eventos y la fecha actual.
+// Obtén la lista de eventos y la fecha actual
 const eventos = data.events;
 const fechaActual = new Date(data.currentDate);
 
@@ -82,14 +82,3 @@ buscador.addEventListener("keyup", () => {
   renderizarEventos(eventosFiltrados);
 });
 
-
-// checkbox.appendChild(busquedaForm);
-// function filtroPorTexto(eventos) {
-//   const textoBusqueda = document.getElementById('buscador').value.toLowerCase();
-//   return eventos.filter(evento => evento.name.toLowerCase().includes(textoBusqueda));
-// }
-
-// document.getElementById('buscador').addEventListener('keyup', () => {
-//   const filtro = filtroPorTexto(eventos);
-//   filtrosDeEventos(filtro);
-// });
