@@ -11,24 +11,20 @@ function cardEvento(evento) {
   } else {
     const card = document.createElement("div");
     card.classList.add("card");
+    card.classList.add("col-md-3");
     card.innerHTML = `
-      <div class="row">
-        <div class="col-12">
-          <div class="col-md-2">
-            <div class="card" style="width: 13rem;">
-              <img src=${evento.image} class="img-fluid" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">${evento.name}</h5>
-                <p class="card-text">${evento.description}</p>
-                <div class="d-flex justify-content-around align-items-center">
-                  <h6 class="card-subtitle mt-2">Price: ${evento.price}</h6>
-                  <a href="./Details.html?id=${evento._id}" class="btn btn-primary">Details</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>`;
+    <div class="col-md-4 mb-4">
+  <div class="custom-card">
+    <img src="${evento.image}" class="custom-card-img" alt="Evento">
+    <div class="custom-card-body">
+      <h5 class="custom-card-title">${evento.name}</h5>
+      <p class="custom-card-text">${evento.description}</p>
+      <h6 class="custom-card-subtitle">Price: ${evento.price}</h6>
+      <a href="./Details.html?id=${evento._id}" class="btn custom-btn">Details</a>
+    </div>
+  </div>
+</div>
+`;
     return card;
   }
 }
@@ -78,8 +74,8 @@ function filtrarPorCategoria(eventos, categoriasSeleccionadas) {
   if (categoriasSeleccionadas.length === 0) {
     return eventos; // Si no hay categorías seleccionadas, se devuelven todos los eventos
   }
-  else{
-  return eventos.filter(evento => categoriasSeleccionadas.includes(evento.category));
+  else {
+    return eventos.filter(evento => categoriasSeleccionadas.includes(evento.category));
   }
 }
 
@@ -109,7 +105,7 @@ function filtrado() {
 filtrosDeEventos([]);
 
 checkbox.addEventListener('change', filtrado);
-  
+
 function filtrarTexto(eventos, textoBusqueda) {
   return eventos.filter(evento => evento.name.toLowerCase().includes(textoBusqueda.toLowerCase()));
 }
@@ -117,7 +113,7 @@ function filtrarTexto(eventos, textoBusqueda) {
 function actualizarEventos() {
   const textoBusqueda = buscar.value;
   const eventosFiltrados = filtrarTexto(eventos, textoBusqueda);
-  contenedor.innerHTML = ''; 
+  contenedor.innerHTML = '';
   eventosFiltrados.forEach(evento => {
     contenedor.appendChild(cardEvento(evento));
   });
