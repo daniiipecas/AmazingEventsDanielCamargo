@@ -15,20 +15,18 @@ function renderizarEventos(eventos) {
   eventos.forEach(evento => {
     const card = document.createElement("div");
     card.classList.add("card");
-    card.innerHTML = `
-      <div class="col-md-3">
-        <div class="card" style="width: 18rem;">
-          <img src=${evento.image} class="card-img-top img-fluid" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">${evento.name}</h5>
-            <p class="card-text">${evento.description}</p>
-            <div class="d-flex justify-content-around align-items-center">
-              <h6 class="card-subtitle mt-2">Price: ${evento.price}</h6>
-              <a href="./Details.html?id=${evento._id}" class="btn btn-primary">Details</a>
-            </div>
-          </div>
-        </div>
+    card.classList.add("col-md-3");
+    card.innerHTML = `<div class="col-md-4 mb-4">
+    <div class="custom-card">
+      <img src="${evento.image}" class="custom-card-img" alt="Evento">
+      <div class="custom-card-body">
+        <h5 class="custom-card-title">${evento.name}</h5>
+        <p class="custom-card-text">${evento.description}</p>
+        <h6 class="custom-card-subtitle">Price: ${evento.price}</h6>
+        <a href="./Details.html?id=${evento._id}" class="btn custom-btn">Details</a>
       </div>
+    </div>
+  </div>
     `;
     contenedor.appendChild(card);
   });

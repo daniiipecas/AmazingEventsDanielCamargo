@@ -24,7 +24,7 @@ function crearCard(evento) {
                         <li><strong>Category:</strong> ${evento.category}</li>
                         <li><strong>Place:</strong> ${evento.place}</li>
                         <li><strong>Capacity:</strong> ${evento.capacity} seats</li>
-                        <li><strong>Assistance:</strong> ${evento.assistance}</li>
+                        <li>${evento.assistance==null?"<strong>Estimate: </strong>"+evento.estimate:"<strong>Assistance: </strong>"+evento.assistance}</li>
                         <li><strong>Price:</strong> ${evento.price}</li>
                     </ul>
                 </div>
