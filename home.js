@@ -1,6 +1,6 @@
+import { data } from "./modules/data.js";
 const contenedor = document.getElementById("contenedor-cards");
 const checkbox = document.getElementById("check");
-const buscador = document.getElementById("buscar");
 const eventos = data.events;
 
 
@@ -69,15 +69,6 @@ categoriasUnicas.forEach(categoria => {
   checkbox.appendChild(crearCategoria(categoria));
 });
 
-// funcion para filtrar las categorias 
-function filtrarPorCategoria(eventos, categoriasSeleccionadas) {
-  if (categoriasSeleccionadas.length === 0) {
-    return eventos; // Si no hay categorías seleccionadas, se devuelven todos los eventos
-  }
-  else {
-    return eventos.filter(evento => categoriasSeleccionadas.includes(evento.category));
-  }
-}
 
 function filtrado() {
   const textoBusqueda = buscar.value;
@@ -101,22 +92,8 @@ function filtrado() {
   }
 }
 
-
 filtrosDeEventos([]);
 
 checkbox.addEventListener('change', filtrado);
-
-function filtrarTexto(eventos, textoBusqueda) {
-  return eventos.filter(evento => evento.name.toLowerCase().includes(textoBusqueda.toLowerCase()));
-}
-
-function actualizarEventos() {
-  const textoBusqueda = buscar.value;
-  const eventosFiltrados = filtrarTexto(eventos, textoBusqueda);
-  contenedor.innerHTML = '';
-  eventosFiltrados.forEach(evento => {
-    contenedor.appendChild(cardEvento(evento));
-  });
-}
 
 buscar.addEventListener("keyup", filtrado);
