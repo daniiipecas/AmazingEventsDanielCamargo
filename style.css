@@ -99,6 +99,9 @@ border: 0cap!important;
   font-weight: bold;
   border-radius: 5px;
 }
+tr{
+  text-align: center;
+}
 
 @media only screen and (max-width: 576px) {
   div.col-sm-7 {

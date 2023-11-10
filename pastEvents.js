@@ -1,15 +1,62 @@
-const contenedor = document.getElementById("contenedor-cards");
-const checkbox = document.getElementById("check");
-const buscador = document.getElementById("buscar"); 
+// upcoming.js
 
-// Obtén la lista de eventos y la fecha actual
-const eventos = data.events;
-const fechaActual = new Date(data.currentDate);
+import { cardEvento, crearCategoria, contenedor, checkbox } from "./modules/funciones.js";
 
-// Filtra los eventos futuros.
-const eventosPasados = eventos.filter(evento => new Date(evento.date) < fechaActual);
+const apiUrl = 'https://mindhub-xj03.onrender.com/api/amazing';
 
-// Función para renderizar las tarjetas de eventos.
+let eventosPasados;
+
+fetch(apiUrl)
+  .then(response => response.json())
+  .then(dataArray => {
+    eventosPasados = filtrarEventosPasados(dataArray);  // <-- Aquí estaba el error
+
+    const categoriasUnicas = new Set(eventosPasados.map(evento => evento.category));
+
+    categoriasUnicas.forEach(categoria => {
+      const cate = document.createElement("div");
+      cate.classList.add("checkbox");
+      cate.innerHTML = `
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="${categoria}" id="flexCheckIndeterminate" name="category">
+          <label class="form-check-label">
+            ${categoria}
+          </label>
+        </div>
+      `;
+      checkbox.appendChild(cate);
+    });
+
+    checkbox.addEventListener('change', () => {
+      const checked = document.querySelectorAll('input[type=checkbox]:checked');
+      const categoriasSeleccionadas = Array.from(checked).map(checkbox => checkbox.value);
+      filtrarPorCategoria(categoriasSeleccionadas);
+    });
+
+    // Realizar la primera carga de eventos
+    filtrarPorCategoria([]);
+  })
+  .catch(error => {
+    console.error('Error al cargar datos desde la API:', error);
+  });
+
+function filtrarEventosPasados(dataArray) {
+  const fechaActual = new Date(dataArray.currentDate);
+  return dataArray.events.filter(evento => new Date(evento.date) < fechaActual);
+}
+
+function filtrarPorCategoria(categoriasSeleccionadas) {
+  // Utiliza eventosPasados en lugar de eventosFuturos
+  if (categoriasSeleccionadas.length === 0) {
+    renderizarEventos(eventosPasados);
+  } else {
+    const eventosFiltrados = eventosPasados.filter(evento =>
+      categoriasSeleccionadas.includes(evento.category)
+    );
+    renderizarEventos(eventosFiltrados);
+  }
+}
+
 function renderizarEventos(eventos) {
   contenedor.innerHTML = '';
   eventos.forEach(evento => {
@@ -31,52 +78,3 @@ function renderizarEventos(eventos) {
     contenedor.appendChild(card);
   });
 }
-
-// Función para filtrar eventos por categoría.
-function filtrarPorCategoria(categoriasSeleccionadas) {
-  if (categoriasSeleccionadas.length === 0) {
-    // Si no se seleccionan categorías, muestra todos los eventos futuros.
-    renderizarEventos(eventosPasados);
-  } else {
-    const eventosFiltrados = eventosPasados.filter(evento =>
-      categoriasSeleccionadas.includes(evento.category)
-    );
-    renderizarEventos(eventosFiltrados);
-  }
-}
-
-// Renderiza los eventos futuros al cargar la página.
-renderizarEventos(eventosPasados);
-
-// Lógica para los checkboxes de categorías.
-const categoriasUnicas = new Set(eventos.map(evento => evento.category));
-
-categoriasUnicas.forEach(categoria => {
-  const cate = document.createElement("div");
-  cate.classList.add("checkbox");
-  cate.innerHTML = `
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="${categoria}" id="flexCheckIndeterminate" name="category">
-      <label class="form-check-label">
-        ${categoria}
-      </label>
-    </div>
-  `;
-  checkbox.appendChild(cate);
-});
-
-checkbox.addEventListener('change', () => {
-  const checked = document.querySelectorAll('input[type=checkbox]:checked');
-  const categoriasSeleccionadas = Array.from(checked).map(checkbox => checkbox.value);
-  filtrarPorCategoria(categoriasSeleccionadas);
-});
-
-// Lógica para la búsqueda por nombre de evento
-buscador.addEventListener("keyup", () => {
-  const textoBusqueda = buscador.value.toLowerCase();
-  const eventosFiltrados = eventosPasados.filter(evento =>
-    evento.name.toLowerCase().includes(textoBusqueda)
-  );
-  renderizarEventos(eventosFiltrados);
-});
-
