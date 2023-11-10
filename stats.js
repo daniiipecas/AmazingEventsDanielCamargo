@@ -45,7 +45,7 @@ fetch(apiUrl)
       tableEstimate.innerHTML = `
         <tr>
           <th>Categories</th>
-          <th>Estimated Revenues</th>
+          <th>Revenues</th>
           <th>Percentage of estimate</th>
         </tr>
         ${categoriasUnicas.map(categoria => {
